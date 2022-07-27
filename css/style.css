@@ -1,0 +1,639 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  --dark-one: #333;
+  --dark-two: #7a7a7a;
+  --main-color: #784cfb;
+  --light-one: #fff;
+  --light-two: #f9fafb;
+  --light-three: #f6f7fb;
+}
+/* General styles  */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  z-index: 5;
+  max-width: 92rem;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.grid-2 {
+  display: grid;
+  /* can't use percent coz percent will cause margin and padding */
+  /* 1fr = 1 part of the available space */
+  /* repeat(2, 1fr) also work like this */
+  grid-template-columns: 1fr 1fr;
+  /* center vertically */
+  align-items: center;
+  /* center horizontally */
+  justify-content: center;
+}
+
+.text {
+  font-size: 1.25rem;
+  color: var(--dark-two);
+  line-height: 1.6;
+}
+
+.column-1 {
+  margin-right: 1.5rem;
+}
+
+.column-2 {
+  margin-left: 1.5rem;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.overlay {
+  /* absolute remove the element from the document flow */
+  /* absolute position require the parent class position relative to be in the same div*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.overlay .shape {
+  /* initial means the actual size  of the image */
+  width: initial;
+  opacity: 0.13;
+  position: absolute;
+}
+
+.overlay .overlay-lg .shape {
+  height: 55px;
+}
+
+.overlay .overlay-lg .shape .wave {
+  height: initial;
+  width: 88px;
+}
+.points {
+  opacity: 0.3;
+  position: absolute;
+}
+
+.z-index {
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  padding: 7rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+  line-height: 1;
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.title::before {
+  content: attr(data-title);
+  /* this will take the whole display */
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--main-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.title::after {
+  /* content should used in every before and after element */
+  /* "" this declare an empty span */
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 5px;
+  border-radius: 3px;
+  background-color: var(--main-color);
+  bottom: 0;
+  left: 50%;
+  /* move content according to x axis */
+  transform: translateX(-50%);
+}
+.title-sm {
+  color: var(--dark-one);
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.points-sq {
+  width: 210px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background-color: var(--main-color);
+  color: var(--light-one);
+  border-radius: 2rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #6b44e0;
+}
+
+.btn.small {
+  padding: 0.7rem 1.8rem;
+  font-size: 1rem;
+}
+/*                      End General styles               */
+
+/* Header */
+header {
+  position: relative;
+  width: 100%;
+  background-color: var(--light-three);
+  overflow: hidden;
+}
+
+nav {
+  width: 100%;
+  position: relative;
+  z-index: 50;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  height: 6rem;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  /* align vertically center */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.links ul {
+  display: flex;
+}
+
+.links a {
+  /* defult display- inline, padding and margin won't work for inline display */
+  display: inline-block;
+  padding: 0.9rem 1.2rem;
+  color: var(--dark-one);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+  transition: 0.3s;
+}
+
+.links a.active {
+  background-color: var(--main-color);
+  color: var(--light-one);
+  border-radius: 2rem;
+  font-size: 1rem;
+  /* 0.9 top and bottom and 2.1 left and right */
+  padding: 00.9rem 2.1rem;
+  margin-left: 1rem;
+}
+
+.links a:hover {
+  color: var(--main-color);
+}
+
+.links a.active:hover {
+  color: var(--light-one);
+  background-color: #6b44e0;
+}
+
+.header-content .container.grid-2 {
+  grid-template-columns: 2.5fr 3.5fr;
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 2.5rem;
+  text-align: left;
+}
+
+.header-title {
+  font-size: 3.8rem;
+  line-height: 0.8;
+  color: var(--dark-one);
+}
+
+.header-content .text {
+  margin: 2.15rem 0;
+}
+
+.header-content .image .img-element {
+  max-width: 750px;
+}
+
+header .points1 {
+  width: 420px;
+  bottom: -75px;
+  left: -150px;
+}
+
+header .points2 {
+  width: 70%;
+  top: 65%;
+  left: 71%;
+}
+
+header .square {
+  right: 68%;
+  top: 71%;
+}
+
+header .triangle {
+  right: 7%;
+  bottom: 75%;
+}
+
+header .xshape {
+  right: 4%;
+  bottom: 50%;
+}
+
+header .half-circle1 {
+  right: 50%;
+  bottom: 82%;
+}
+
+header .wave1 {
+  bottom: 75%;
+  left: 20%;
+}
+
+header .wave2 {
+  bottom: 8%;
+  right: 55%;
+}
+
+header .circle {
+  bottom: 63%;
+  left: 38%;
+}
+
+header .half-circle2 {
+  right: 5%;
+  top: 67%;
+}
+
+header .square {
+  right: 68%;
+  top: 71%;
+}
+
+.letters {
+  position: absolute;
+  width: 13.5%;
+  /* push it 5px backword from the top */
+  top: -5px;
+  /* push 15px from the overlay left */
+  left: 15px;
+  opacity: 0.06;
+}
+/* End Header */
+
+/* services */
+.cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card-wrap {
+  position: relative;
+  margin: 1.7rem 0.8rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 390px;
+  min-height: 520px;
+  background-color: var(--light-three);
+  padding: 3rem 2rem;
+  overflow: hidden;
+  transition: 00.3s;
+}
+
+.card::before {
+  content: attr(data-card);
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--main-color);
+  opacity: 0.025;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--main-color);
+  transition: 0.3s;
+}
+
+.card-wrap:hover .card {
+  transform: translateY(-15px);
+}
+
+.card-wrap:hover .card:after {
+  height: 8px;
+}
+
+.icon {
+  width: 90px;
+  margin-bottom: 1.7rem;
+}
+.card .title-sm {
+  line-height: 0.8;
+}
+.card .text {
+  font-size: 1.15rem;
+  margin: 1.8rem 0;
+}
+
+.services .points1 {
+  bottom: -50px;
+  left: -125px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.services .points2 {
+  bottom: -70px;
+  right: -65px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+/* end services */
+
+/* Portfolio */
+.portfolio {
+  position: relative;
+  width: 100%;
+  background-color: var(--light-two);
+  /* min-height: 1200px; */
+}
+
+.background-bg {
+  position: absolute;
+  width: 100%;
+  height: 520px;
+  top: 0;
+  left: 0;
+  background-color: var(--main-color);
+}
+
+.portfolio .title,
+.portfolio .title::before {
+  color: var(--light-one);
+}
+
+.portfolio .title::after {
+  background-color: var(--light-one);
+}
+
+.filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0.45rem 1.8rem;
+  padding: 0.85rem 1.8rem;
+  color: var(--light-one);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 2rem;
+  transition: 00.3s;
+}
+
+.filter-btn.active {
+  background-color: var(--light-one);
+  color: var(--main-color);
+}
+
+.overlay.overlay-sm .shape {
+  filter: brightness(0) invert(1);
+  opacity: 0.15;
+  height: 40px;
+}
+
+.overlay.overlay-sm .shape.wave {
+  height: initial;
+  width: 70px;
+}
+
+.overlay.overlay-sm .shape.xshape {
+  height: 30px;
+}
+
+.portfolio .square {
+  top: 28%;
+  left: 20%;
+}
+
+.portfolio .circle {
+  top: 8%;
+  right: 35%;
+}
+
+.portfolio .triangle {
+  bottom: 10%;
+  right: 4%;
+}
+
+.portfolio .half-circle1 {
+  bottom: 13%;
+  left: 5%;
+}
+
+.portfolio .half-circle2 {
+  top: 35%;
+  right: 20%;
+}
+
+.portfolio .xshape {
+  top: 10%;
+  right: 8%;
+}
+
+.portfolio .wave {
+  top: 38%;
+  left: 6%;
+}
+
+.grid {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.grid-item {
+  width: 33.33%;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+.gallery-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 333px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.gallery-image img {
+  position: absolute;
+  height: 115%;
+  width: initial;
+  width: initial;
+  /* position center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* centered */
+  /* animation is applied from center */
+  transform-origin: center;
+  transition: 00.5s;
+}
+.gallery-image .img-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  color: var(--light-one);
+  background-color: rgba(120, 76, 251, 0.55);
+  display: flex;
+  /* for flex-direction : column
+     justify-content => align vertically and
+     align-items => align horizontally */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem 3.2rem;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.img-overlay .plus {
+  position: relative;
+  margin: auto 0;
+}
+.plus::before,
+.plus::after {
+  content: "";
+  position: absolute;
+  width: 4.5rem;
+  height: 3px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-one);
+  border-radius: 3px;
+}
+.plus::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.img-description {
+  width: 100%;
+}
+
+.img-overlay h3 {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+.img-overlay h5 {
+  font-size: 1.15rem;
+  font-weight: 300;
+}
+
+.gallery-image .img-overlay:hover {
+  opacity: 1;
+}
+
+.gallery-image:hover img {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.more-folio {
+  display: flex;
+  justify-content: center;
+}
+/* End Portfolio */
